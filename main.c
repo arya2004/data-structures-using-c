@@ -2,31 +2,21 @@
 #include<conio.h>
 #include<stdlib.h>
 #include <math.h>
-#define MAX 10
-//#include "queue_ll.h"
 #include "stack_array.h"
-
-void hello(){
-    int i = 0;
-    int n =10;
-    for ( ; i < n; i++)
-    {
-        
-    }
-    printf("%i",i);
-}
-
-
+//#include "queue_array.h"
 
 int main()
 {   
     
-    Stack s = init(s, 5);
-    s.element[0] = 44;
-    s.element[1] = 45;
-    s.element[2] = 46;
-    s.element[3] = 47;
-    s.element[4] = 48;s.element[5] = 48;
-    printf("\n%i", s.element[-2]);printf("\n%i", s.element[1]);printf("\n%i", s.element[2]);printf("\n%i", s.element[3]);printf("\n%i", s.element[4]);printf("\n%i", s.element[5]);printf("\n%i", s.element[6]);
+    Stack stack = initStack(stack, 5);
+    stack = push(stack, 7);stack = push(stack, 3);stack = push(stack, 22);stack = push(stack, 10);
+    stack = displayStack(stack);
+    stack = pop(stack);
+     stack = push(stack, 88);
+    stack = push(stack, 11);
+    // stack = push(stack, 33);
+    printf("\n%i", peek(stack));
+    stack = displayStack(stack);
+
     
 }
