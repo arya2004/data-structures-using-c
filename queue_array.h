@@ -40,6 +40,7 @@ Queue enqueue(Queue queue, int element){
 }
 
 Queue dequeue(Queue queue){
+
     Queue temp  = initQueue(temp, queue.size);
     for (int i = queue.front + 1; i <= queue.rear; i++)
     {

@@ -23,8 +23,15 @@ LinkedList newLinkedList(LinkedList linkedlist, int data){
     return linkedlist;
 }
 
-int countLinkedList(LinkedList linkedlist){
+int sizeLinkedList(LinkedList linkedlist){
     return linkedlist.size;
+}
+
+int tailLinkedList(LinkedList linkedlist){
+    return linkedlist.tail->data;
+}
+int headLinkedList(LinkedList linkedlist){
+    return linkedlist.head->data;
 }
 
 LinkedList insertEndLinkedList(LinkedList linkedlist, int data){

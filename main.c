@@ -4,8 +4,8 @@
 #include <math.h>
 #include "stack_array.h"
 //#include "linkedlist.h"
-//#include "queue_array.h"
-#include "doublelinkedlist.h"
+#include "queue_array.h"
+//#include "doublelinkedlist.h"
 
 int main()
 {   
@@ -37,16 +37,27 @@ int main()
     // printf("\n%i", countLinkedList(ll));
 
 
-    DoubleLinkedList dll = newDoubleLinkedList(dll, 55);
-    dll = insertEndDoubleLinkedList(dll, 23);
-    dll = insertEndDoubleLinkedList(dll, 34);
-    dll = insertBeginningDoubleLinkedList(dll, 66);
-    dll = deleteBeginningDoubleLinkedList(dll);
-    dll = deleteEndDoubleLinkedList(dll);
-    dll = insertBeginningDoubleLinkedList(dll, 39);
-    printf("%i", dll.tail->next);
-    dll = dropLinkedList(dll);
-    dll = newDoubleLinkedList(dll ,69);
-    dll = insertBeginningDoubleLinkedList(dll, 39);
-    displayDoubleLinkekdList(dll);
+    // DoubleLinkedList dll = newDoubleLinkedList(dll, 55);
+    // dll = insertEndDoubleLinkedList(dll, 23);
+    // dll = insertEndDoubleLinkedList(dll, 34);
+    // dll = insertBeginningDoubleLinkedList(dll, 66);
+   
+    // dll = insertBeginningDoubleLinkedList(dll, 36);
+    
+    
+    // dll = insertBeginningDoubleLinkedList(dll, 39);
+    
+    // displayDoubleLinkekdList(dll);
+    // dll = deleteAnyDoubleLinkedList(dll,4);
+    // displayDoubleLinkekdList(dll);
+
+    Queue q = initQueue(q, 4);
+    q = enqueue(q, 22);
+    q = enqueue(q, 21);
+    q = enqueue(q, 25);
+    q = dequeue(q);
+        q = enqueue(q, 30);
+    q = enqueue(q, 31);
+  //  q = enqueue(q, 32);
+    q = displayQueue(q);
 }

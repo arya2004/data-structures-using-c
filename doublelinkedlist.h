@@ -26,6 +26,18 @@ DoubleLinkedList newDoubleLinkedList(DoubleLinkedList doublelinkedlist, int data
     
 }
 
+int sizeDoubleLinkedList(DoubleLinkedList doublelinkedlist){
+    return doublelinkedlist.size;
+}
+
+int headDoubleLinkedList(DoubleLinkedList doublelinkedlist){
+    return doublelinkedlist.head->data;
+}
+
+int tailDoubleLinkedList(DoubleLinkedList doublelinkedlist){
+    return doublelinkedlist.tail->data;
+}
+
 DoubleLinkedList insertEndDoubleLinkedList(DoubleLinkedList doublelinkedlist, int data){
     doublelinkedlist.tail->next = (Node*) malloc(sizeof(Node));
     doublelinkedlist.tail->next->data = data;
@@ -46,6 +58,40 @@ DoubleLinkedList insertBeginningDoubleLinkedList(DoubleLinkedList doublelinkedli
     return doublelinkedlist;
 }
 
+DoubleLinkedList insertAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist, int data, int position){
+    if (position < 0 || position > doublelinkedlist.size + 1)
+    {
+        printf("\nposition out of bound in insertAnyDoubleLinkedList");
+        exit(1);
+    }
+    else if (position == 1)
+    {
+       doublelinkedlist =  insertBeginningDoubleLinkedList(doublelinkedlist, data);
+    }
+    else if (position == doublelinkedlist.size + 1)
+    {
+       doublelinkedlist =  insertEndDoubleLinkedList(doublelinkedlist, data);
+    }
+    else{
+        Node * temp = (Node*)malloc(sizeof(Node));
+        Node* ptr = doublelinkedlist.head;
+        for (int i = 1; i < position - 1; i++)
+        {
+            ptr = ptr->next;
+        }
+        
+        temp->data = data;
+        temp->next = ptr->next;
+        ptr->next = temp;
+        temp->previous = ptr;
+        temp->next->previous = temp;
+        doublelinkedlist.size = doublelinkedlist.size + 1;
+        
+        
+    }
+    return doublelinkedlist;
+}
+
 DoubleLinkedList deleteBeginningDoubleLinkedList(DoubleLinkedList doublelinkedlist){
     doublelinkedlist.head = doublelinkedlist.head->next;
     free(doublelinkedlist.head->previous);
@@ -61,14 +107,38 @@ DoubleLinkedList deleteEndDoubleLinkedList(DoubleLinkedList doublelinkedlist){
     return doublelinkedlist;
 }
 
+DoubleLinkedList deleteAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist,int position){
+    if (position < 0 || position > doublelinkedlist.size)
+    {
+        printf("\nposition out of bound in deleteAnyDoubleLinkedList");
+        exit(1);
+    }
+    else if (position == 1)
+    {
+       doublelinkedlist =  deleteBeginningDoubleLinkedList(doublelinkedlist);
+    }
+    else if (position == doublelinkedlist.size)
+    {
+       doublelinkedlist =  deleteEndDoubleLinkedList(doublelinkedlist);
+    }
+    else{
+        Node* ptr = doublelinkedlist.head;
+        for (int i = 1; i < position - 1; i++)
+        {
+            ptr = ptr->next;
+        }
+        ptr->next = ptr->next->next;
+        free(ptr->next->previous);
+        ptr->next->previous = ptr;
+        doublelinkedlist.size = doublelinkedlist.size -1;
+        
+        
+    }
+    return doublelinkedlist;
+}
 
 DoubleLinkedList dropLinkedList(DoubleLinkedList doublelinkedlist){
     Node* temp = doublelinkedlist.head;
-    // for (int i = 1; i < doublelinkedlist.size; i++)
-    // {
-    //     doublelinkedlist.head = doublelinkedlist.head->next;
-    //     free(doublelinkedlist.head->previous);
-    // }
     while (temp != NULL)
     {
         temp = temp->next;
