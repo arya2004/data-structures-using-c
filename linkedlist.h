@@ -14,7 +14,7 @@ typedef struct {
     Node* tail;
 }LinkedList;
 
-LinkedList initLinkedList(LinkedList linkedlist, int data){
+LinkedList newLinkedList(LinkedList linkedlist, int data){
     linkedlist.head = (Node*)malloc(sizeof(Node));
     linkedlist.tail = linkedlist.head;
     linkedlist.size = 1;
@@ -27,7 +27,7 @@ int countLinkedList(LinkedList linkedlist){
     return linkedlist.size;
 }
 
-LinkedList insertEnd(LinkedList linkedlist, int data){
+LinkedList insertEndLinkedList(LinkedList linkedlist, int data){
     linkedlist.tail->link = (Node*)malloc(sizeof(Node));
     linkedlist.tail->link->data = data;
     linkedlist.tail->link->link = NULL;
@@ -36,7 +36,7 @@ LinkedList insertEnd(LinkedList linkedlist, int data){
     return linkedlist;
 }
 
-LinkedList insertBeginning(LinkedList linkedlist, int data){
+LinkedList insertBeginningLinkedList(LinkedList linkedlist, int data){
     Node* temp = (Node*)malloc(sizeof(Node));
     temp->data = data;
     temp->link = linkedlist.head;
@@ -45,6 +45,25 @@ LinkedList insertBeginning(LinkedList linkedlist, int data){
     return linkedlist;
 }
 
+LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
+    Node* temp = linkedlist.head;
+    linkedlist.head = linkedlist.head->link;
+    linkedlist.size = linkedlist.size - 1;
+    free(temp);
+    return linkedlist;
+}
+
+LinkedList dropLinkedList(LinkedList linkedlist){
+    Node * temp = linkedlist.head;
+    while (temp != NULL)
+    {
+        temp = temp->link;
+        free(linkedlist.head);
+        linkedlist.head = temp;
+    }
+    linkedlist.size = 0;
+    return linkedlist;
+}
 
 void displayLinkedList(LinkedList linkedlist){
     printf("\nHEAD");
