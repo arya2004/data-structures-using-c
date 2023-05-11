@@ -14,9 +14,24 @@ int main()
 {   
    DoubleLinkedList dll = newDoubleLinkedList(dll, 34);//initialize
   dll = insertBeginningDoubleLinkedList(dll, 99);
+  dll = insertEndDoubleLinkedList(dll, 65);
+  dll = insertAnyDoubleLinkedList(dll, 109, 3);
+  dll = insertAnyDoubleLinkedList(dll, 404, 2);
+
+  displayDoubleLinkekdList(dll);
+
+  dll = deleteBeginningDoubleLinkedList(dll);
+  dll = insertBeginningDoubleLinkedList(dll, 92);
+
+  displayDoubleLinkekdList(dll);
   
-displayDoubleLinkekdList(dll);
-dll = deleteBeginningDoubleLinkedList(dll);dll = deleteBeginningDoubleLinkedList(dll);dll = deleteBeginningDoubleLinkedList(dll);
-displayDoubleLinkekdList(dll);
+  dll = deleteAnyDoubleLinkedList(dll ,3);
+
+  displayDoubleLinkekdList(dll);
+  printf("\n%i", sizeDoubleLinkedList(dll) );
+  printf("\n%i", headDoubleLinkedList(dll) );
+  printf("\n%i", tailDoubleLinkedList(dll) );
+  dll = dropLinkedList(dll);
+    printf("\n%i", sizeDoubleLinkedList(dll) );
 
 }
