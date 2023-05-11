@@ -30,7 +30,7 @@ Queue enqueue(Queue queue, int element){
         queue.element[queue.rear] = element;
     }
     else if(queue.rear == queue.size -1){
-       printf("queue full" );
+       printf("\nqueue full" );
       
        exit(3);
     }
