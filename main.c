@@ -3,8 +3,8 @@
 #include<stdlib.h>
 #include <math.h>
 #include "stack_array.h"
-//#include "linkedlist.h"
-#include "queue_array.h"
+#include "linkedlist.h"
+//#include "queue_array.h"
 //#include "doublelinkedlist.h"
 
 int main()
@@ -20,22 +20,26 @@ int main()
     // printf("\n%i", peek(stack));
     // stack = displayStack(stack);
     
-    // LinkedList ll = newLinkedList(ll, 44);
-    // ll = insertEndLinkedList(ll, 41);
-    // ll = insertEndLinkedList(ll, 22);ll = insertEndLinkedList(ll, 102);
-    // displayLinkedList(ll);
-    // ll = insertBeginningLinkedList(ll, 98);
-    // displayLinkedList(ll);
-    // ll = deleteBeginningLinkedList(ll);
-    // displayLinkedList(ll);
-    // ll = dropLinkedList(ll);
-    // displayLinkedList(ll);
-    // ll = newLinkedList(ll, 88);
-    // ll = insertEndLinkedList(ll, 89);
-    // ll = insertBeginningLinkedList(ll, 90);
-    //     displayLinkedList(ll);
-    // printf("\n%i", countLinkedList(ll));
-
+    LinkedList ll = newLinkedList(ll, 44);
+    ll = insertEndLinkedList(ll, 41);
+    ll = insertEndLinkedList(ll, 22);
+    ll = insertEndLinkedList(ll, 102);
+    displayLinkedList(ll);
+    ll = insertBeginningLinkedList(ll, 98);
+    displayLinkedList(ll);
+    ll = insertAnyLinkedList(ll, 1000, 3);
+   
+    displayLinkedList(ll);
+    ll = insertAnyLinkedList(ll, 1001, 1);
+   displayLinkedList(ll);
+    ll = insertEndLinkedList(ll, 89);
+    ll = insertBeginningLinkedList(ll, 90);
+        //displayLinkedList(ll);
+    printf("\n%i", sizeLinkedList(ll));
+    printf("\n%i", ll.tail->data);
+displayLinkedList(ll);
+  ll = deleteAnyLinkedList(ll, 1);
+displayLinkedList(ll);
 
     // DoubleLinkedList dll = newDoubleLinkedList(dll, 55);
     // dll = insertEndDoubleLinkedList(dll, 23);
@@ -51,13 +55,13 @@ int main()
     // dll = deleteAnyDoubleLinkedList(dll,4);
     // displayDoubleLinkekdList(dll);
 
-    Queue q = initQueue(q, 4);
-    q = enqueue(q, 22);
-    q = enqueue(q, 21);
-    q = enqueue(q, 25);
-    q = dequeue(q);
-        q = enqueue(q, 30);
-    q = enqueue(q, 31);
-  //  q = enqueue(q, 32);
-    q = displayQueue(q);
+  //   Queue q = initQueue(q, 4);
+  //   q = enqueue(q, 22);
+  //   q = enqueue(q, 21);
+  //   q = enqueue(q, 25);
+  //   q = dequeue(q);
+  //       q = enqueue(q, 30);
+  //   q = enqueue(q, 31);
+  // //  q = enqueue(q, 32);
+  //   q = displayQueue(q);
 }

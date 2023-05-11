@@ -52,11 +52,84 @@ LinkedList insertBeginningLinkedList(LinkedList linkedlist, int data){
     return linkedlist;
 }
 
+LinkedList insertAnyLinkedList(LinkedList linkedlist, int data, int position){
+    if (position < 1 || position > linkedlist.size + 1)
+    {
+        printf("\nposition out of bound in insertAnyLinkedList");
+        exit(1);
+    }
+    else if (position == 1)
+    {
+        linkedlist = insertBeginningLinkedList(linkedlist, data);
+    }
+    else if (position == linkedlist.size + 1)
+    {
+        linkedlist = insertEndLinkedList(linkedlist, data);
+    }
+    else
+    {  
+    Node * temp = (Node *)malloc(sizeof(Node));
+    Node* ptr = linkedlist.head;
+    for (int i = 1; i < position - 1; i++)
+    {
+        ptr = ptr->link;
+    }
+    temp->data = data;
+    temp->link = ptr->link;
+    ptr->link = temp;
+    linkedlist.size = linkedlist.size + 1;
+    }
+    return linkedlist;
+}
+
 LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
     Node* temp = linkedlist.head;
     linkedlist.head = linkedlist.head->link;
     linkedlist.size = linkedlist.size - 1;
     free(temp);
+    return linkedlist;
+}
+
+LinkedList deleteEndLinkedList(LinkedList linkedlist){
+    Node* temp = linkedlist.head;
+    for (int i = 1; i < linkedlist.size - 1; i++)
+    {
+        temp = temp->link;
+    }
+    linkedlist.tail = temp;
+    free(temp->link);
+    temp->link = NULL;
+    linkedlist.size = linkedlist.size - 1;
+    return linkedlist;
+}
+
+LinkedList deleteAnyLinkedList(LinkedList linkedlist, int position){
+    if (position < 1 || position > linkedlist.size )
+    {
+        printf("\nposition out of bound in deleteAnyLinkedList");
+        exit(1);
+    }
+    else if (position == 1)
+    {
+        linkedlist = deleteBeginningLinkedList(linkedlist);
+    }
+    else if (position == linkedlist.size)
+    {
+        linkedlist = deleteEndLinkedList(linkedlist);
+    }
+    else
+    {  
+    Node * current = linkedlist.head;
+    Node* previous = linkedlist.head;
+    for (int i = 1; i < position - 1; i++)
+    {
+        previous = previous->link;
+    }
+    current = previous->link;
+    previous->link = current->link;
+    free(current);
+    linkedlist.size = linkedlist.size -1;
+    }
     return linkedlist;
 }
 

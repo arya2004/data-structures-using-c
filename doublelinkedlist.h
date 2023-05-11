@@ -59,7 +59,7 @@ DoubleLinkedList insertBeginningDoubleLinkedList(DoubleLinkedList doublelinkedli
 }
 
 DoubleLinkedList insertAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist, int data, int position){
-    if (position < 0 || position > doublelinkedlist.size + 1)
+    if (position < 1 || position > doublelinkedlist.size + 1)
     {
         printf("\nposition out of bound in insertAnyDoubleLinkedList");
         exit(1);
@@ -108,7 +108,7 @@ DoubleLinkedList deleteEndDoubleLinkedList(DoubleLinkedList doublelinkedlist){
 }
 
 DoubleLinkedList deleteAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist,int position){
-    if (position < 0 || position > doublelinkedlist.size)
+    if (position < 1 || position > doublelinkedlist.size)
     {
         printf("\nposition out of bound in deleteAnyDoubleLinkedList");
         exit(1);
@@ -121,7 +121,8 @@ DoubleLinkedList deleteAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist,int
     {
        doublelinkedlist =  deleteEndDoubleLinkedList(doublelinkedlist);
     }
-    else{
+    else
+    {
         Node* ptr = doublelinkedlist.head;
         for (int i = 1; i < position - 1; i++)
         {
