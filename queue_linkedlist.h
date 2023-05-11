@@ -14,44 +14,49 @@ typedef struct {
     Node* tail;
 }LinkedListQueue;
 
-LinkedListQueue newLinkedListQueue(LinkedListQueue LinkedListQueue, int data)
+LinkedListQueue newLinkedListQueue(LinkedListQueue linkedlistqueue, int data)
 {
-    LinkedListQueue.head = (Node*)malloc(sizeof(Node));
-    LinkedListQueue.tail = LinkedListQueue.head;
-    LinkedListQueue.size = 1;
-    LinkedListQueue.head->link = NULL;
-    LinkedListQueue.head->data = data;
-    return LinkedListQueue;
+    linkedlistqueue.head = (Node*)malloc(sizeof(Node));
+    linkedlistqueue.tail = linkedlistqueue.head;
+    linkedlistqueue.size = 1;
+    linkedlistqueue.head->link = NULL;
+    linkedlistqueue.head->data = data;
+    return linkedlistqueue;
 }
 
-int sizeLinkedListQueue(LinkedListQueue LinkedListQueue){
-    return LinkedListQueue.size;
+int sizeLinkedListQueue(LinkedListQueue linkedlistqueue){
+    return linkedlistqueue.size;
 }
 
-int rearLinkedListQueue(LinkedListQueue LinkedListQueue){
-    return LinkedListQueue.tail->data;
+int rearLinkedListQueue(LinkedListQueue linkedlistqueue){
+    return linkedlistqueue.tail->data;
 }
-int frontLinkedListQueue(LinkedListQueue LinkedListQueue){
-    return LinkedListQueue.head->data;
+int frontLinkedListQueue(LinkedListQueue linkedlistqueue){
+    return linkedlistqueue.head->data;
 }
 
-LinkedListQueue enqueueLinkedListQueue(LinkedListQueue LinkedListQueue, int data)
+LinkedListQueue enqueueLinkedListQueue(LinkedListQueue linkedlistqueue, int data)
 {
-    LinkedListQueue.tail->link = (Node*)malloc(sizeof(Node));
-    LinkedListQueue.tail->link->data = data;
-    LinkedListQueue.tail->link->link = NULL;
-    LinkedListQueue.tail = LinkedListQueue.tail->link;
-    LinkedListQueue.size = LinkedListQueue.size + 1;  
-    return LinkedListQueue;
+    linkedlistqueue.tail->link = (Node*)malloc(sizeof(Node));
+    linkedlistqueue.tail->link->data = data;
+    linkedlistqueue.tail->link->link = NULL;
+    linkedlistqueue.tail = linkedlistqueue.tail->link;
+    linkedlistqueue.size = linkedlistqueue.size + 1;  
+    return linkedlistqueue;
 }
 
-LinkedListQueue dequeueLinkedListQueue(LinkedListQueue LinkedListQueue)
-{
-    Node* temp = LinkedListQueue.head;
-    LinkedListQueue.head = LinkedListQueue.head->link;
-    LinkedListQueue.size = LinkedListQueue.size - 1;
+LinkedListQueue dequeueLinkedListQueue(LinkedListQueue linkedlistqueue)
+{   
+    if (linkedlistqueue.size == 0)
+    {
+        printf("\nlinked list queue is empty in dequeueLinkedListQueue");
+        exit(1);
+    }
+    Node* temp = linkedlistqueue.head;
+    linkedlistqueue.head = linkedlistqueue.head->link;
+    linkedlistqueue.size = linkedlistqueue.size - 1;
     free(temp);
-    return LinkedListQueue;
+    return linkedlistqueue;
 }
 
 

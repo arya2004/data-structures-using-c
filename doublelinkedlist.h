@@ -15,6 +15,8 @@ typedef struct {
     Node* tail;
 }DoubleLinkedList;
 
+DoubleLinkedList dropLinkedList(DoubleLinkedList);
+
 DoubleLinkedList newDoubleLinkedList(DoubleLinkedList doublelinkedlist, int data){
     doublelinkedlist.size = 1;
     doublelinkedlist.head = (Node*) malloc( sizeof(Node));
@@ -93,21 +95,56 @@ DoubleLinkedList insertAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist, in
 }
 
 DoubleLinkedList deleteBeginningDoubleLinkedList(DoubleLinkedList doublelinkedlist){
+    if (doublelinkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteBeginningDoubleLinkedList");
+        exit(1);
+    }
+    else if (doublelinkedlist.size == 1)
+    {
+       doublelinkedlist =  dropLinkedList(doublelinkedlist);
+    }
+    else
+    {
     doublelinkedlist.head = doublelinkedlist.head->next;
     free(doublelinkedlist.head->previous);
     doublelinkedlist.head->previous = NULL;
     doublelinkedlist.size = doublelinkedlist.size - 1;
+    
+    }
     return doublelinkedlist;
 }
 DoubleLinkedList deleteEndDoubleLinkedList(DoubleLinkedList doublelinkedlist){
+    if (doublelinkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteEndDoubleLinkedList");
+        exit(1);
+    }
+    else if (doublelinkedlist.size == 1)
+    {
+       doublelinkedlist =  dropLinkedList(doublelinkedlist);
+    }
+    else
+    {
     doublelinkedlist.tail = doublelinkedlist.tail->previous;
     free(doublelinkedlist.tail->next);
     doublelinkedlist.tail->next = NULL;
     doublelinkedlist.size = doublelinkedlist.size -1;
+    
+    }
     return doublelinkedlist;
 }
 
 DoubleLinkedList deleteAnyDoubleLinkedList(DoubleLinkedList doublelinkedlist,int position){
+    if (doublelinkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteAnyDoubleLinkedList");
+        exit(1);
+    }
+    else if (doublelinkedlist.size == 1)
+    {
+       doublelinkedlist =  dropLinkedList(doublelinkedlist);
+    }
     if (position < 1 || position > doublelinkedlist.size)
     {
         printf("\nposition out of bound in deleteAnyDoubleLinkedList");
@@ -146,6 +183,8 @@ DoubleLinkedList dropLinkedList(DoubleLinkedList doublelinkedlist){
         free(doublelinkedlist.head);
         doublelinkedlist.head = temp;
     }
+    doublelinkedlist.head = NULL;
+    doublelinkedlist.tail = NULL;
     doublelinkedlist.size = 0;
     return doublelinkedlist;
 }

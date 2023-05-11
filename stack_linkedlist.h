@@ -44,10 +44,17 @@ LinkedListStack pushLinkedListStack(LinkedListStack linkedliststack, int data)
 
 LinkedListStack popLinkedListStack(LinkedListStack linkedliststack)
 {
+    if (linkedliststack.size == 0)
+    {
+        printf("\nlinked list queue is empty in pushLinkedListStack");
+        exit(1);
+    }
+    else{
     Node* temp = linkedliststack.head;
     linkedliststack.head = linkedliststack.head->link;
     linkedliststack.size = linkedliststack.size - 1;
     free(temp);
+    }
     return linkedliststack;
 }
 

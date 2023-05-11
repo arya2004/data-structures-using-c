@@ -14,6 +14,8 @@ typedef struct {
     Node* tail;
 }LinkedList;
 
+LinkedList dropLinkedList(LinkedList);
+
 LinkedList newLinkedList(LinkedList linkedlist, int data){
     linkedlist.head = (Node*)malloc(sizeof(Node));
     linkedlist.tail = linkedlist.head;
@@ -83,14 +85,36 @@ LinkedList insertAnyLinkedList(LinkedList linkedlist, int data, int position){
 }
 
 LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
-    Node* temp = linkedlist.head;
-    linkedlist.head = linkedlist.head->link;
-    linkedlist.size = linkedlist.size - 1;
-    free(temp);
+    if (linkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteBeginningLinkedList");
+        exit(1);
+    }
+    else if (linkedlist.size == 1)
+    {
+       linkedlist =  dropLinkedList(linkedlist);
+    }
+    else{
+        Node* temp = linkedlist.head;
+        linkedlist.head = linkedlist.head->link;
+        linkedlist.size = linkedlist.size - 1;
+        free(temp);
+    }
+
     return linkedlist;
 }
 
 LinkedList deleteEndLinkedList(LinkedList linkedlist){
+    if (linkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteEndLinkedList");
+        exit(1);
+    }
+    else if (linkedlist.size == 1)
+    {
+       linkedlist =  dropLinkedList(linkedlist);
+    }
+    else{
     Node* temp = linkedlist.head;
     for (int i = 1; i < linkedlist.size - 1; i++)
     {
@@ -100,14 +124,24 @@ LinkedList deleteEndLinkedList(LinkedList linkedlist){
     free(temp->link);
     temp->link = NULL;
     linkedlist.size = linkedlist.size - 1;
+    }
     return linkedlist;
 }
 
 LinkedList deleteAnyLinkedList(LinkedList linkedlist, int position){
-    if (position < 1 || position > linkedlist.size )
+    if (linkedlist.size == 0)
+    {
+        printf("\nlinked list is empty in deleteAnyLinkedList");
+        exit(1);
+    }
+    else if (position < 1 || position > linkedlist.size )
     {
         printf("\nposition out of bound in deleteAnyLinkedList");
         exit(1);
+    }
+    else if (linkedlist.size == 1)
+    {
+       linkedlist =  dropLinkedList(linkedlist);
     }
     else if (position == 1)
     {
