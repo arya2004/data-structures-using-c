@@ -12,65 +12,70 @@ typedef struct {
     Node* head;
     int size;
     Node* tail;
-}LinkedList;
+}LinkedListQueue;
 
-LinkedList newLinkedList(LinkedList linkedlist, int data){
-    linkedlist.head = (Node*)malloc(sizeof(Node));
-    linkedlist.tail = linkedlist.head;
-    linkedlist.size = 1;
-    linkedlist.head->link = NULL;
-    linkedlist.head->data = data;
-    return linkedlist;
+LinkedListQueue newLinkedListQueue(LinkedListQueue LinkedListQueue, int data)
+{
+    LinkedListQueue.head = (Node*)malloc(sizeof(Node));
+    LinkedListQueue.tail = LinkedListQueue.head;
+    LinkedListQueue.size = 1;
+    LinkedListQueue.head->link = NULL;
+    LinkedListQueue.head->data = data;
+    return LinkedListQueue;
 }
 
-int sizeLinkedList(LinkedList linkedlist){
-    return linkedlist.size;
+int sizeLinkedListQueue(LinkedListQueue LinkedListQueue){
+    return LinkedListQueue.size;
 }
 
-int tailLinkedList(LinkedList linkedlist){
-    return linkedlist.tail->data;
+int rearLinkedListQueue(LinkedListQueue LinkedListQueue){
+    return LinkedListQueue.tail->data;
 }
-int headLinkedList(LinkedList linkedlist){
-    return linkedlist.head->data;
-}
-
-LinkedList insertEndLinkedList(LinkedList linkedlist, int data){
-    linkedlist.tail->link = (Node*)malloc(sizeof(Node));
-    linkedlist.tail->link->data = data;
-    linkedlist.tail->link->link = NULL;
-    linkedlist.tail = linkedlist.tail->link;
-    linkedlist.size = linkedlist.size + 1;  
-    return linkedlist;
+int frontLinkedListQueue(LinkedListQueue LinkedListQueue){
+    return LinkedListQueue.head->data;
 }
 
-LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
-    Node* temp = linkedlist.head;
-    linkedlist.head = linkedlist.head->link;
-    linkedlist.size = linkedlist.size - 1;
+LinkedListQueue enqueueLinkedListQueue(LinkedListQueue LinkedListQueue, int data)
+{
+    LinkedListQueue.tail->link = (Node*)malloc(sizeof(Node));
+    LinkedListQueue.tail->link->data = data;
+    LinkedListQueue.tail->link->link = NULL;
+    LinkedListQueue.tail = LinkedListQueue.tail->link;
+    LinkedListQueue.size = LinkedListQueue.size + 1;  
+    return LinkedListQueue;
+}
+
+LinkedListQueue dequeueLinkedListQueue(LinkedListQueue LinkedListQueue)
+{
+    Node* temp = LinkedListQueue.head;
+    LinkedListQueue.head = LinkedListQueue.head->link;
+    LinkedListQueue.size = LinkedListQueue.size - 1;
     free(temp);
-    return linkedlist;
+    return LinkedListQueue;
 }
 
 
-LinkedList dropLinkedList(LinkedList linkedlist){
-    Node * temp = linkedlist.head;
+LinkedListQueue dropLinkedListQueue(LinkedListQueue linkedlistqueue)
+{
+    Node * temp = linkedlistqueue.head;
     while (temp != NULL)
     {
         temp = temp->link;
-        free(linkedlist.head);
-        linkedlist.head = temp;
+        free(linkedlistqueue.head);
+        linkedlistqueue.head = temp;
     }
-    linkedlist.size = 0;
-    return linkedlist;
+    linkedlistqueue.size = 0;
+    return linkedlistqueue;
 }
 
-void displayLinkedList(LinkedList linkedlist){
-    printf("\nHEAD");
-    LinkedList temp = linkedlist;
-    for (int i = 0; i < linkedlist.size; i++)
+void displayLinkedListQueue(LinkedListQueue linkedlistqueue)
+{
+    printf("\nFRONT");
+    LinkedListQueue temp = linkedlistqueue;
+    for (int i = 0; i < linkedlistqueue.size; i++)
     {
         printf("->%i", temp.head->data);
         temp.head = temp.head->link;
     }
-    printf("<-TAIL");
+    printf("<-REAR");
 }

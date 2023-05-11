@@ -11,71 +11,67 @@ typedef struct node{
 typedef struct {
     Node* head;
     int size;
-    Node* tail;
-}LinkedList;
+}LinkedListStack;
 
-LinkedList newLinkedList(LinkedList linkedlist, int data){
-    linkedlist.head = (Node*)malloc(sizeof(Node));
-    linkedlist.tail = linkedlist.head;
-    linkedlist.size = 1;
-    linkedlist.head->link = NULL;
-    linkedlist.head->data = data;
-    return linkedlist;
+LinkedListStack newLinkedListStack(LinkedListStack linkedliststack, int data)
+{
+    linkedliststack.head = (Node*)malloc(sizeof(Node));
+    linkedliststack.size = 1;
+    linkedliststack.head->link = NULL;
+    linkedliststack.head->data = data;
+    return linkedliststack;
 }
 
-int sizeLinkedList(LinkedList linkedlist){
-    return linkedlist.size;
+int sizeLinkedListStack(LinkedListStack linkedliststack)
+{
+    return linkedliststack.size;
 }
 
-int tailLinkedList(LinkedList linkedlist){
-    return linkedlist.tail->data;
-}
-int headLinkedList(LinkedList linkedlist){
-    return linkedlist.head->data;
+int topLinkedListStack(LinkedListStack linkedliststack)
+{
+    return linkedliststack.head->data;
 }
 
-
-
-LinkedList insertBeginningLinkedList(LinkedList linkedlist, int data){
+LinkedListStack pushLinkedListStack(LinkedListStack linkedliststack, int data)
+{
     Node* temp = (Node*)malloc(sizeof(Node));
     temp->data = data;
-    temp->link = linkedlist.head;
-    linkedlist.size = linkedlist.size + 1;
-    linkedlist.head = temp;
-    return linkedlist;
+    temp->link = linkedliststack.head;
+    linkedliststack.size = linkedliststack.size + 1;
+    linkedliststack.head = temp;
+    return linkedliststack;
 }
 
-
-
-LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
-    Node* temp = linkedlist.head;
-    linkedlist.head = linkedlist.head->link;
-    linkedlist.size = linkedlist.size - 1;
+LinkedListStack popLinkedListStack(LinkedListStack linkedliststack)
+{
+    Node* temp = linkedliststack.head;
+    linkedliststack.head = linkedliststack.head->link;
+    linkedliststack.size = linkedliststack.size - 1;
     free(temp);
-    return linkedlist;
+    return linkedliststack;
 }
 
-
-
-LinkedList dropLinkedList(LinkedList linkedlist){
-    Node * temp = linkedlist.head;
+LinkedListStack dropLinkedListStack(LinkedListStack linkedliststack)
+{
+    Node * temp = linkedliststack.head;
     while (temp != NULL)
     {
         temp = temp->link;
-        free(linkedlist.head);
-        linkedlist.head = temp;
+        free(linkedliststack.head);
+        linkedliststack.head = temp;
     }
-    linkedlist.size = 0;
-    return linkedlist;
+    linkedliststack.size = 0;
+    return linkedliststack;
 }
 
-void displayLinkedList(LinkedList linkedlist){
-    printf("\nHEAD");
-    LinkedList temp = linkedlist;
-    for (int i = 0; i < linkedlist.size; i++)
+void displayLinkedListStack(LinkedListStack linkedliststack)
+{
+    printf("\nTOP");
+    LinkedListStack temp = linkedliststack;
+    for (int i = 0; i < linkedliststack.size; i++)
     {
         printf("->%i", temp.head->data);
         temp.head = temp.head->link;
     }
-    printf("<-TAIL");
+    
 }
