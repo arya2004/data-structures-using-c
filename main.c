@@ -2,36 +2,36 @@
 #include<conio.h>
 #include<stdlib.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 //#include "stack_array.h"
-//#include "linkedlist.h"
+//#include "doublelinkedlist.h"
 //#include "queue_array.h"
-#include "doublelinkedlist.h"
+//#include "linkedlist.h"
 //#include "stack_linkedlist.h"
 //#include "queue_linkedlist.h"
+#include "circularqueue_array.h"
+int main ()
+{
+  CircularQueue c = initQueue(c, 4);//max size is 4
+  c = enqueueCircularQueue(c, 100);
+  c = enqueueCircularQueue(c, 600);
+  c = enqueueCircularQueue(c, 303);
+  c = enqueueCircularQueue(c, 201);
 
+  displayCircularQueue(c);
 
-int main()
-{   
-   DoubleLinkedList dll = newDoubleLinkedList(dll, 34);//initialize
-  dll = insertBeginningDoubleLinkedList(dll, 99);
-  dll = insertEndDoubleLinkedList(dll, 65);
-  dll = insertAnyDoubleLinkedList(dll, 109, 3);
-  dll = insertAnyDoubleLinkedList(dll, 404, 2);
+  c = dequeueCircularQueue(c);
+  c = dequeueCircularQueue(c);
+  c = enqueueCircularQueue(c, 40);
+  c = enqueueCircularQueue(c, 404);
 
-  displayDoubleLinkekdList(dll);
+  displayCircularQueue(c);
+  printf("\n%i", frontCircularQueue(c) );
+  printf("\n%i", rearCircularQueue(c) );
+  printf("\n%i", isCircularQueueFull(c) );
+  printf("\n%i", isCircularQueueEmpty(c) );
 
-  dll = deleteBeginningDoubleLinkedList(dll);
-  dll = insertBeginningDoubleLinkedList(dll, 92);
-
-  displayDoubleLinkekdList(dll);
-  
-  dll = deleteAnyDoubleLinkedList(dll ,3);
-
-  displayDoubleLinkekdList(dll);
-  printf("\n%i", sizeDoubleLinkedList(dll) );
-  printf("\n%i", headDoubleLinkedList(dll) );
-  printf("\n%i", tailDoubleLinkedList(dll) );
-  dll = dropLinkedList(dll);
-    printf("\n%i", sizeDoubleLinkedList(dll) );
-
+  return 0;
 }
