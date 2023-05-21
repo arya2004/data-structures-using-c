@@ -100,6 +100,7 @@ LinkedList deleteBeginningLinkedList(LinkedList linkedlist){
         linkedlist.head = linkedlist.head->link;
         linkedlist.size = linkedlist.size - 1;
         free(temp);
+        linkedlist.tail->link = linkedlist.head;
     }
 
     return linkedlist;
@@ -123,7 +124,7 @@ LinkedList deleteEndLinkedList(LinkedList linkedlist){
     }
     linkedlist.tail = temp;
     free(temp->link);
-    temp->link = NULL;
+    temp->link = linkedlist.head;
     linkedlist.size = linkedlist.size - 1;
     }
     return linkedlist;

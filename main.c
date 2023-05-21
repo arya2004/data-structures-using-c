@@ -14,7 +14,8 @@
 //#include "circularqueue_array.h"
 //#include "merge_sort.h"
 //#include "search.h"
-#include "circularlinkedlist.h"
+//#include "circularlinkedlist.h"
+#include "sort.h"
 // int q ()
 // {
 //   int a[10] = {11,22,33,44,55,67,77,88,99, 100};
@@ -26,14 +27,15 @@
 //   return 0;
 // }
 int main ()
-{
-  LinkedList ll = newLinkedList(ll, 77);
- // ll = insertEndLinkedList(ll, 69);
- ll = insertBeginningLinkedList(ll, 99);
-   printf("\n%i", ll.head->data);
-  printf("\n%i", ll.head->link->data);
-  printf("\n%i", ll.head->link->link->data);
-   printf("\n%i", ll.head->link->link->link->data);
+{ int pp[10] = {4,6,5,9,1,0,2,8,3,7};
+int a = 10;
 
+  int *p = insertionSort(pp, a);
+  for (int i = 0; i < 10; i++)
+  {
+    printf("\n%i", p[i]);
+  }
+  
+  
   return 0;
 }
