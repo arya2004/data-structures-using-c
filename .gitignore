@@ -3,3 +3,5 @@
 *.vscode
 .vscode\settings.json
 main.c
+inf_post.c
+inf_pre.c

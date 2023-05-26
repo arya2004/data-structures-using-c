@@ -28,17 +28,35 @@ int* bubbleSort(int* array, int size)
     return array;
 }
 
+// int * selectionSort1(int* array, int size)
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         for (int j = i; j < size; j++)
+//         {
+//             if(array[i] > array[j])
+//             {
+//                 swap((array + i), (array + j));
+//             }
+//         }
+        
+//     }
+//     return array;
+// }
+
 int * selectionSort(int* array, int size)
 {
     for (int i = 0; i < size; i++)
-    {
+    {   int min = i;
         for (int j = i; j < size; j++)
         {
-            if(array[i] > array[j])
+            if (array[j] < array[min] )
             {
-                swap((array + i), (array + j));
+                min = j;
             }
+            
         }
+        swap((array + min), (array + i));
         
     }
     return array;
