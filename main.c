@@ -7,7 +7,9 @@
 #include <string.h>
 #include<stdbool.h>
 //#include "stack_array.h"
-#include "doublelinkedlist.h"
+//#include "doublelinkedlist.h"
+//#include "double-end-queue.h"
+#include "priorityQueue.h"
 //#include "queue_array.h"
 //#include "linkedlist.h"
 //#include "stack_linkedlist.h"
@@ -19,30 +21,15 @@
 //#include "sort.h"
 //#include"inf_post.h"
 
-DoubleLinkedList reverseLinkedList(DoubleLinkedList doublelinkedlist){
-    Node* temp = doublelinkedlist.head;
-    Node* swap = NULL;
-    while (temp != NULL)
-    {  
-        swap = temp->next;
-        temp->next = temp->previous;
-        temp->previous = swap;
-        temp = temp->previous;  
-       
-    }
-    
-    return doublelinkedlist;
-}
+
 
 int main()
 {
-   DoubleLinkedList dll = newDoubleLinkedList(dll, 34);
-   dll = insertEndDoubleLinkedList(dll, 11);
-   dll = insertEndDoubleLinkedList(dll, 54);
-   dll = insertEndDoubleLinkedList(dll, 192);
-   dll = insertEndDoubleLinkedList(dll, 304);
-   displayDoubleLinkekdList(dll);
-   dll = reverseLinkedList(dll);
-   displayDoubleLinkekdList(dll);
+   
+
+    
    
 }
+
+//priority queue
+//for normal queue time of isertion is priority
