@@ -9,7 +9,7 @@
 //#include "stack_array.h"
 //#include "doublelinkedlist.h"
 //#include "double-end-queue.h"
-#include "priorityQueue.h"
+//#include "priorityQueue.h"
 //#include "queue_array.h"
 //#include "linkedlist.h"
 //#include "stack_linkedlist.h"
@@ -21,12 +21,19 @@
 //#include "sort.h"
 //#include"inf_post.h"
 
-
+#include "tree.h"
 
 int main()
 {
    
-
+    int arr[10] = {1,2,3,4,55,66,6,8,99,12};
+   
+     Tree tree;
+    // tree.Root = (Node*) malloc(sizeof(Node));
+    tree.Root == NULL;
+     tree = addTree(tree, 55);
+    // tree = insertMany(tree, arr);
+   //inorderTree(tree.Root);
     
    
 }
