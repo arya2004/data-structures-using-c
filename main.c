@@ -21,21 +21,20 @@
 //#include "sort.h"
 //#include"inf_post.h"
 
-#include "tree.h"
-
+#include "trees.h"
+//#include "stack_tree.h"
 int main()
 {
    
     int arr[10] = {1,2,3,4,55,66,6,8,99,12};
    
-     Tree tree;
-    // tree.Root = (Node*) malloc(sizeof(Node));
-    tree.Root == NULL;
-     tree = addTree(tree, 55);
-    // tree = insertMany(tree, arr);
-   //inorderTree(tree.Root);
-    
-   
+     Tree lul;
+     lul.Root = NULL;
+     lul = BST(lul, arr);
+     lul1(lul.Root);
+    // inorderTree(lul.Root);
+   // postOrder(lul.Root);
+    //postOrderNon(lul);
 }
 
 //priority queue

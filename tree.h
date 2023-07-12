@@ -57,7 +57,7 @@ Tree addTree(Tree _tree,int _data)
                     _traverse->right->data = _data;
                     _traverse->right->left = NULL;
                     _traverse->right->right = NULL;
-                    break;
+                    return _tree;
                 }
                 _traverse = _traverse->right;
             }
@@ -69,7 +69,7 @@ Tree addTree(Tree _tree,int _data)
                     _traverse->left->data = _data;
                     _traverse->left->left = NULL;
                     _traverse->left->right = NULL;
-                    break;
+                    return _tree;
                 }
                 _traverse = _traverse->left;
             }
@@ -78,6 +78,66 @@ Tree addTree(Tree _tree,int _data)
     }
     
     return _tree;
+}
+
+void lul(Node* _node,int _data)
+{
+
+    if(_node == NULL)
+    {
+        _node = (Node*) malloc(sizeof(Node));
+        _node->data = _data;
+        _node->left = NULL;
+        _node->right = NULL;
+    }
+    Node* traverse = _node;
+    while (true)
+    {
+        if(_data > traverse->data)
+        {
+            if (traverse->right == NULL)
+            {
+                traverse->right = (Node*) malloc(sizeof(Node));
+                _node->data = _data;
+                _node->left = NULL;
+                _node->right = NULL;
+                break;
+            }
+            else{
+                traverse = traverse->right;
+            }
+            
+            
+        }
+        if(_data < traverse->data)
+        {
+            if (traverse->left == NULL)
+            {
+                traverse->left = (Node*) malloc(sizeof(Node));
+                _node->data = _data;
+                _node->left = NULL;
+                _node->right = NULL;
+                break;
+            }
+            else{
+                traverse = traverse->left;
+            }
+            
+            
+        }
+    }
+    
+  
+}
+
+void insertLul(Node* _node, int* array)
+{
+    for (int i = 0; i < 10; i++)
+    {
+        lul(_node, array[i]);
+    }
+   
+    
 }
 
 Tree insertMany(Tree _tree,int* array)
@@ -93,10 +153,12 @@ Tree insertMany(Tree _tree,int* array)
 
 void inorderTree(Node* _node)
 {
-    if(_node != NULL)
-    {
+    if(_node == NULL) 
+        return;
+    
+    
         inorderTree(_node->left);
-        printf(" %i", _node->data);
+        printf("\n %i", _node->data);
         inorderTree(_node->right);
-    }
+    
 }
