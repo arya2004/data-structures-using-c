@@ -11,7 +11,7 @@ typedef struct node{
 
 
 typedef struct StackNode{
-    Node node;
+    Node* node;
     struct StackNode* link;
 }StackNode;
 
@@ -22,9 +22,9 @@ typedef struct {
 
 LinkedListStack newLinkedListStack(LinkedListStack linkedliststack)
 {
-    linkedliststack.head = (StackNode*)malloc(sizeof(StackNode));
+    linkedliststack.head = NULL;
     linkedliststack.size = 0;
-    linkedliststack.head->link = NULL;
+    //linkedliststack.head->link = NULL;
     
     return linkedliststack;
 }
@@ -34,16 +34,17 @@ int sizeLinkedListStack(LinkedListStack linkedliststack)
     return linkedliststack.size;
 }
 
-int topLinkedListStack(LinkedListStack linkedliststack)
+Node* topLinkedListStack(LinkedListStack linkedliststack)
 {
-    return linkedliststack.head->node.data;
+    return linkedliststack.head->node;
 }
 
-LinkedListStack pushLinkedListStack(LinkedListStack linkedliststack, Node _node)
+LinkedListStack pushLinkedListStack(LinkedListStack linkedliststack, Node *_node)
 {
     StackNode* temp = (StackNode*)malloc(sizeof(StackNode));
     temp->node = _node;
     temp->link = linkedliststack.head;
+
     linkedliststack.size = linkedliststack.size + 1;
     linkedliststack.head = temp;
     return linkedliststack;
@@ -84,7 +85,7 @@ void displayLinkedListStack(LinkedListStack linkedliststack)
     LinkedListStack temp = linkedliststack;
     for (int i = 0; i < linkedliststack.size; i++)
     {
-        printf("->%i", temp.head->node.data);
+        printf("->%i", temp.head->node->data);
         temp.head = temp.head->link;
     }
     

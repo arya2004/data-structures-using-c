@@ -104,9 +104,9 @@ void lul1(Node* _node)
     if(_node != NULL) 
     {   
             printf(" %i", _node->data);
-         preorderTree(_node->left);
+         lul1(_node->left);
          
-        preorderTree(_node->right);
+        lul1(_node->right);
         
     }
     
@@ -134,24 +134,26 @@ Tree BST(Tree _tree, int* arr)
 }
 
 void postOrderNon(Tree _tree)
-{   Node *temp = _tree.Root;
+{ 
+       Node *temp = _tree.Root;
     LinkedListStack _linkedListStack = newLinkedListStack(_linkedListStack);
 
     Node* prev = NULL;
     do
     {   while (temp != NULL)
         {
-            _linkedListStack = pushLinkedListStack(_linkedListStack, *temp);
-            printf("\n %i",temp->data);
+            _linkedListStack = pushLinkedListStack(_linkedListStack, temp);
+           
             temp = temp->left;
         }
     
-        while (temp != NULL)
-        {
-            if(temp->right == NULL || sizeLinkedListStack(_linkedListStack) != 0)
+        while (temp != NULL && sizeLinkedListStack(_linkedListStack) != 0)
+        {   
+            temp = topLinkedListStack(_linkedListStack);
+            if(temp->right == NULL || temp->right == prev)
             {
-                printf("\n %i",temp->data);
-                prev = _tree.Root;
+                printf("\n qq%i",temp->data);
+                prev = temp;
                 _linkedListStack = popLinkedListStack(_linkedListStack);
                 temp = NULL;
 
@@ -164,7 +166,44 @@ void postOrderNon(Tree _tree)
         }
         
 
-    } while (sizeLinkedListStack(_linkedListStack)>= 0);
+    } while (sizeLinkedListStack(_linkedListStack) != 0);
     
 }
 
+
+void postOrderNo(Tree _tree)
+{  // postOrder(_tree.Root);
+       Node *temp = _tree.Root;
+    LinkedListStack _linkedListStack = newLinkedListStack(_linkedListStack);
+
+    Node* prev = NULL;
+    do
+    {   while (temp != NULL)
+        {
+            _linkedListStack = pushLinkedListStack(_linkedListStack, temp->right);
+           
+            temp = temp->left;
+        }
+    
+        while (temp != NULL && sizeLinkedListStack(_linkedListStack) != 0)
+        {   
+            temp = topLinkedListStack(_linkedListStack);
+            if(temp->right == NULL || temp->right == prev)
+            {
+                printf("\n qq%i",temp->data);
+                prev = temp;
+                _linkedListStack = popLinkedListStack(_linkedListStack);
+                temp = NULL;
+
+            }
+            else
+            {
+                temp = temp->right;
+            }
+
+        }
+        
+
+    } while (sizeLinkedListStack(_linkedListStack) != 0);
+    
+}

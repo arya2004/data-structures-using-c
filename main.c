@@ -23,18 +23,17 @@
 
 #include "trees.h"
 //#include "stack_tree.h"
+//#include "stack_tree.h"
 int main()
 {
    
     int arr[10] = {1,2,3,4,55,66,6,8,99,12};
    
-     Tree lul;
-     lul.Root = NULL;
-     lul = BST(lul, arr);
-     lul1(lul.Root);
-    // inorderTree(lul.Root);
-   // postOrder(lul.Root);
-    //postOrderNon(lul);
+    Tree lul;
+    lul.Root = NULL;
+    lul = BST(lul, arr);
+    
+    //postOrderNo(lul);
 }
 
 //priority queue
