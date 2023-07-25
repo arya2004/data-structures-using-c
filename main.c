@@ -33,7 +33,7 @@ int main()
     lul.Root = NULL;
     lul = BST(lul, arr);
     
-    //postOrderNo(lul);
+    inorderTree(lul.Root);
 }
 
 //priority queue
