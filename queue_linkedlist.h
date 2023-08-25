@@ -36,8 +36,9 @@ int frontLinkedListQueue(LinkedListQueue linkedlistqueue){
 }
 
 LinkedListQueue enqueueLinkedListQueue(LinkedListQueue linkedlistqueue, int data)
-{
-    linkedlistqueue.tail->link = (Node*)malloc(sizeof(Node));
+{   
+    Node* temp = (Node*)malloc(sizeof(Node));
+    linkedlistqueue.tail->link = temp;
     linkedlistqueue.tail->link->data = data;
     linkedlistqueue.tail->link->link = NULL;
     linkedlistqueue.tail = linkedlistqueue.tail->link;

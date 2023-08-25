@@ -8,6 +8,7 @@ typedef struct{
     int rear;
     int size;
     int *element;
+    int currentSize;
 }Queue;
 
 Queue initQueue(Queue queue, int size){
@@ -15,6 +16,7 @@ Queue initQueue(Queue queue, int size){
     queue.front = -1;
     queue.rear = -1;
     queue.size = size;
+    queue.currentSize = 0;
     return queue;
 }
 
@@ -23,11 +25,13 @@ Queue enqueue(Queue queue, int element){
         queue.front = 0;
         queue.rear = 0;
         queue.element[queue.rear] = element;
+        queue.currentSize = 1;
     }
     else if (queue.rear < queue.size - 1)
     {
         queue.rear = queue.rear + 1;
         queue.element[queue.rear] = element;
+        queue.currentSize +=1;
     }
     else if(queue.rear == queue.size -1){
        printf("\nqueue full" );
@@ -47,6 +51,7 @@ Queue dequeue(Queue queue){
         temp = enqueue(temp, queue.element[i]);
     }
     free(queue.element);
+    
     return temp;
 }
 
