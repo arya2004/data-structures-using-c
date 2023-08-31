@@ -86,23 +86,48 @@ void primMST(Graph* graph) {
 
 int main() {
     int numVertices = 9;
+     printf("enter total vertice\n");
+     scanf("%i", &numVertices);
     Graph* graph = createGraph(numVertices);
 
-    addEdge(graph, 0, 1, 7);
-    addEdge(graph, 1, 3, 6);
-    addEdge(graph, 0, 2, 3);
-    addEdge(graph, 2, 3, 6);
-    addEdge(graph, 0, 5, 9);
-    addEdge(graph, 5, 2, 8);
-    addEdge(graph, 2, 4, 4);
-    addEdge(graph, 3, 4, 2);
-    addEdge(graph, 5, 6, 4);
-    addEdge(graph, 5, 7, 3);
-    addEdge(graph, 6, 7, 7);
-    addEdge(graph, 4, 8, 6);
-    addEdge(graph, 7, 8, 3);
-    addEdge(graph, 7, 6, 7);
-    addEdge(graph, 6, 8, 6);
+    int total_input = 0;
+     printf("enter total inputs\n"); fflush(stdin);
+      fflush(stdout);
+
+     scanf("%i", &total_input);
+      fflush(stdin);
+      fflush(stdout);
+      printf("starting v ending v and weight\n");
+      fflush(stdin);
+      fflush(stdout);
+    for (int i = 0; i < total_input; i++) {
+         fflush(stdin);
+      fflush(stdout);
+        printf("enter input %i\n", i);
+        int t = 0;
+        int y = 0;
+        int u = 0;
+            scanf("%i %i %i", &t, &y, &u);
+            addEdge(graph, t, y, u);
+       
+    }
+
+
+    // addEdge(graph, 0, 1, 7);
+    // addEdge(graph, 1, 3, 6);
+    // addEdge(graph, 0, 2, 3);
+    // addEdge(graph, 2, 3, 6);
+    // addEdge(graph, 0, 5, 9);
+    // addEdge(graph, 5, 2, 8);
+    // addEdge(graph, 2, 4, 4);
+    // addEdge(graph, 3, 4, 2);
+    // addEdge(graph, 5, 6, 4);
+    // addEdge(graph, 5, 7, 3);
+    // addEdge(graph, 6, 7, 7);
+    // addEdge(graph, 4, 8, 6);
+    // addEdge(graph, 7, 8, 3);
+    // addEdge(graph, 7, 6, 7);
+    // addEdge(graph, 6, 8, 6);
 
     primMST(graph);
 
