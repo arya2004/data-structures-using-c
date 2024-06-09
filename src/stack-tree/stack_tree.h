@@ -1,7 +1,25 @@
-#include<stdio.h>
-//#include<conio.h>
-#include<stdlib.h>
-#include <math.h>
+#ifndef STACK_TREE_H
+#define STACK_TREE_H
+
+#include "doublelinkedlist.h"
+
+typedef struct tree {
+    Node* Root;
+    int TotalNodes;
+    int Height;
+} Tree;
+
+Tree InitNode(Tree _tree);
+Tree AddNode(Tree _tree, int _data);
+void inorderTree(Node* _node);
+void preorderTree(Node* _node);
+void lul1(Node* _node);
+void postOrder(Node* _node);
+Tree BST(Tree _tree, int* arr);
+void postOrderNon(Tree _tree);
+void postOrderNo(Tree _tree);
+
+
 
 typedef struct node{
     int data;
@@ -90,3 +108,6 @@ void displayLinkedListStack(LinkedListStack linkedliststack)
     }
     
 }
+
+
+#endif
