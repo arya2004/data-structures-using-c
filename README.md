@@ -37,7 +37,7 @@ To use the data structures in your C projects, follow these steps:
 
 1. Clone the repository to your local machine.
    ```shell
-   git clone https://github.com/arya2004/dataStructures.git
+   git clone https://github.com/arya2004/data-structures-using-c.git
    ```
 2. Copy the desired header file(s) from the repository to your project directory.
 
