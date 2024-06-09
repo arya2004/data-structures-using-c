@@ -1,28 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "graph_traversal.h"
 
-
-#define MAX_VERTICES 100
-
-
-struct Stack {
-    int items[MAX_VERTICES];
-    int top;
-};
-
+/**
+ * Pushes an item onto the stack.
+ *
+ * @param stack Pointer to the Stack.
+ * @param item The item to be pushed.
+ */
 void push(struct Stack* stack, int item) {
     stack->items[++stack->top] = item;
 }
 
+/**
+ * Pops an item from the stack.
+ *
+ * @param stack Pointer to the Stack.
+ * @return The popped item.
+ */
 int pop(struct Stack* stack) {
     return stack->items[stack->top--];
 }
 
+/**
+ * Checks if the stack is empty.
+ *
+ * @param stack Pointer to the Stack.
+ * @return 1 if the stack is empty, 0 otherwise.
+ */
 int isEmpty(struct Stack* stack) {
     return stack->top == -1;
 }
 
-
+/**
+ * Performs Depth-First Search (DFS) on the graph starting from a given vertex.
+ *
+ * @param graph Adjacency matrix representing the graph.
+ * @param vertices Number of vertices in the graph.
+ * @param startVertex The starting vertex for DFS.
+ */
 void DFS(int graph[MAX_VERTICES][MAX_VERTICES], int vertices, int startVertex) {
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
     stack->top = -1;
@@ -43,30 +59,4 @@ void DFS(int graph[MAX_VERTICES][MAX_VERTICES], int vertices, int startVertex) {
         }
     }
     free(stack);
-}
-
-int main() {
-    int vertices = 0; // Number of vertices
-    int graph[MAX_VERTICES][MAX_VERTICES];
-    printf("enter vertices\n");
-    scanf("%i", &vertices);
-    fflush(stdin);
-    fflush(stdout);
-    for (int i = 0; i < vertices; i++)
-    {
-        for (int j = i; j < vertices; j++)
-        {
-            printf("enter edge %i to %i\n",i, j );
-            scanf("%i", &graph[i][j]);
-            fflush(stdin);
-            fflush(stdout);
-        }
-        
-    }
-    
-
-    printf("dfs :\n");
-    DFS(graph, vertices, 0);
-
-    return 0;
 }

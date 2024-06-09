@@ -1,8 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include <string.h>
-#include<stdbool.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 #define MAX_VERTICES 100
 #define INF 9999999
@@ -18,8 +16,35 @@ typedef struct Graph {
     int numVertices;
 } Graph;
 
+// Function prototypes
+Graph* createGraph(int numVertices);
+void addEdge(Graph* graph, int src, int dest, int weight);
+void primMST(Graph* graph);
+
+int main() {
+    int numVertices;
+    printf("Enter the number of vertices: ");
+    scanf("%d", &numVertices);
+    Graph* graph = createGraph(numVertices);
+
+    int totalInput;
+    printf("Enter the total number of inputs: ");
+    scanf("%d", &totalInput);
+
+    printf("Enter starting vertex, ending vertex, and weight for each input:\n");
+    for (int i = 0; i < totalInput; i++) {
+        int start, end, weight;
+        scanf("%d %d %d", &start, &end, &weight);
+        addEdge(graph, start, end, weight);
+    }
+
+    primMST(graph);
+
+    return 0;
+}
+
 Graph* createGraph(int numVertices) {
-    Graph* graph = (Graph*) malloc(sizeof(Graph));
+    Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->numVertices = numVertices;
     for (int i = 0; i < numVertices; ++i) {
         graph->vertices[i] = NULL;
@@ -82,54 +107,4 @@ void primMST(Graph* graph) {
     for (int i = 1; i < numVertices; ++i) {
         printf("%d - %d \t%d\n", parent[i], i, key[i]);
     }
-}
-
-int main() {
-    int numVertices = 9;
-     printf("enter total vertice\n");
-     scanf("%i", &numVertices);
-    Graph* graph = createGraph(numVertices);
-
-    int total_input = 0;
-     printf("enter total inputs\n"); fflush(stdin);
-      fflush(stdout);
-
-     scanf("%i", &total_input);
-      fflush(stdin);
-      fflush(stdout);
-      printf("starting v ending v and weight\n");
-      fflush(stdin);
-      fflush(stdout);
-    for (int i = 0; i < total_input; i++) {
-         fflush(stdin);
-      fflush(stdout);
-        printf("enter input %i\n", i);
-        int t = 0;
-        int y = 0;
-        int u = 0;
-            scanf("%i %i %i", &t, &y, &u);
-            addEdge(graph, t, y, u);
-       
-    }
-
-
-    // addEdge(graph, 0, 1, 7);
-    // addEdge(graph, 1, 3, 6);
-    // addEdge(graph, 0, 2, 3);
-    // addEdge(graph, 2, 3, 6);
-    // addEdge(graph, 0, 5, 9);
-    // addEdge(graph, 5, 2, 8);
-    // addEdge(graph, 2, 4, 4);
-    // addEdge(graph, 3, 4, 2);
-    // addEdge(graph, 5, 6, 4);
-    // addEdge(graph, 5, 7, 3);
-    // addEdge(graph, 6, 7, 7);
-    // addEdge(graph, 4, 8, 6);
-    // addEdge(graph, 7, 8, 3);
-    // addEdge(graph, 7, 6, 7);
-    // addEdge(graph, 6, 8, 6);
-
-    primMST(graph);
-
-    return 0;
 }

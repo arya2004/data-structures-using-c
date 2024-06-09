@@ -1,39 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "graph_traversal.h"
 
-
-#define MAX_VERTICES 100
-
-// linked list
-struct Node {
-    int vertex;
-    struct Node* next;
-};
-
-// adj list pointer array
-struct Graph {
-    struct Node* adjacencyList[MAX_VERTICES];
-};
-
-// stack
-struct Stack {
-    int items[MAX_VERTICES];
-    int top;
-};
-
+/**
+ * Pushes an item onto the stack.
+ *
+ * @param stack Pointer to the Stack.
+ * @param item The item to be pushed.
+ */
 void push(struct Stack* stack, int item) {
     stack->items[++stack->top] = item;
 }
 
+/**
+ * Pops an item from the stack.
+ *
+ * @param stack Pointer to the Stack.
+ * @return The popped item.
+ */
 int pop(struct Stack* stack) {
     return stack->items[stack->top--];
 }
 
+/**
+ * Checks if the stack is empty.
+ *
+ * @param stack Pointer to the Stack.
+ * @return 1 if the stack is empty, 0 otherwise.
+ */
 int isEmpty(struct Stack* stack) {
     return stack->top == -1;
 }
 
-// init
+/**
+ * Creates a graph with V vertices.
+ *
+ * @param V Number of vertices.
+ * @return Pointer to the created Graph.
+ */
 struct Graph* createGraph(int V) {
     struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
     for (int i = 0; i < V; ++i) {
@@ -42,21 +46,32 @@ struct Graph* createGraph(int V) {
     return graph;
 }
 
-
+/**
+ * Adds an edge to the graph.
+ *
+ * @param graph Pointer to the Graph.
+ * @param src Source vertex.
+ * @param dest Destination vertex.
+ */
 void addEdge(struct Graph* graph, int src, int dest) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->vertex = dest;
     newNode->next = graph->adjacencyList[src];
     graph->adjacencyList[src] = newNode;
 
-    // reverse
+    // Since the graph is undirected, add an edge from dest to src as well
     newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->vertex = src;
     newNode->next = graph->adjacencyList[dest];
     graph->adjacencyList[dest] = newNode;
 }
 
-
+/**
+ * Performs Depth-First Search (DFS) on the graph starting from a given vertex.
+ *
+ * @param graph Pointer to the Graph.
+ * @param startVertex The starting vertex for DFS.
+ */
 void DFS(struct Graph* graph, int startVertex) {
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
     stack->top = -1;
@@ -80,42 +95,4 @@ void DFS(struct Graph* graph, int startVertex) {
         }
     }
     free(stack);
-}
-
-int main() {
-    int V = 0; 
-    int k = 0;
-
-  
-    printf("enter MAX vertices\n");
-    scanf("%i", &V);
-    struct Graph* graph = createGraph(V);
-    fflush(stdin);
-    fflush(stdout);
-     printf("enter total edges\n");
-    scanf("%i", &k);
-    fflush(stdin);
-    fflush(stdout);
-    for (int i = 0; i < k; i++)
-    {
-            int first = 0;
-            int second = 0;
-
-            printf("enter edge from first to second separated by space\n" );
-            scanf("%i %i", &first, &second);
-            fflush(stdin);
-            fflush(stdout);
-             addEdge(graph, first, second);
-        
-    }
-    int startingV = 0;
-    printf("enter starting vertec" );
-            scanf("%i", &startingV);
-            fflush(stdin);
-            fflush(stdout);
-
-    printf("dfs  ");
-    DFS(graph, startingV);
-
-    return 0;
 }
